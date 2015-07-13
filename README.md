@@ -2,7 +2,6 @@
 
 fluentd input plugin to create a carbon listener
 
-
 ## Installation
 
 Add this line to your application's Gemfile:
