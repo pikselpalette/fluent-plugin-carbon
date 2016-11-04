@@ -1,4 +1,4 @@
-# fluent-plugin-carbon [![Build Status](https://travis-ci.org/sgran/fluent-plugin-carbon.png)](https://travis-ci.org/sgran/fluent-plugin-carbon)
+# fluent-plugin-carbon [![Build Status](https://travis-ci.org/pikselpalette/fluent-plugin-carbon.png)](https://travis-ci.org/pikselpalette/fluent-plugin-carbon)
 
 fluentd input plugin to create a carbon listener
 
