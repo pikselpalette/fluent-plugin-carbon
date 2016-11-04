@@ -3,7 +3,7 @@ $:.push File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.name        = 'fluent-plugin-carbon'
-  gem.version     = '0.0.1'
+  gem.version     = '0.0.2'
   gem.authors     = ['Stephen Gran']
   gem.email       = 'sgran@debian.org'
   gem.homepage    = 'https://github.com/sgran/fluent-plugin-carbon'
