@@ -2,6 +2,24 @@ require 'fluent/plugin/socket_util'
 
 module Fluent
   class CarbonInput < SocketUtil::BaseInput
+
+    class TCPUnbufferedSocket < SocketUtil::TcpHandler
+
+      def on_read(data)
+        @buffer << data
+        pos = 0
+
+        while i = @buffer.index(@delimiter, pos)
+          msg = @buffer[pos...i]
+          @callback.call(msg, @addr)
+          pos = i + @delimiter.length
+        end
+      rescue => e
+        @log.error "unexpected error", :error => e, :error_class => e.class
+        close
+      end
+    end
+
     Plugin.register_input('carbon', self)
 
     config_set_default :port, 2003
@@ -9,7 +27,7 @@ module Fluent
 
     def listen(callback)
       log.debug "carbon listener on #{@bind}:#{@port}"
-      Coolio::TCPServer.new(@bind, @port, SocketUtil::TcpHandler, log, @delimiter, callback)
+      Coolio::TCPServer.new(@bind, @port, TCPUnbufferedSocket, log, @delimiter, callback)
     end
 
     private
